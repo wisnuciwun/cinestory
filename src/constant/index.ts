@@ -1,4 +1,5 @@
-const API_GET_MOVIES = 'https://www.omdbapi.com/?apikey=9708f5ab&s=Batman&page=1'
+const API_GET_MOVIES: string = `https://www.omdbapi.com/?apikey=${import.meta.env.VITE_API_KEY}`
+const DEFAULT_KEYWORD: string = 'batman'
 
 export type DetailRatings = {
      Source: string
@@ -48,4 +49,4 @@ export type MoviesResponse = {
 
 }
 
-export { API_GET_MOVIES }
+export { API_GET_MOVIES, DEFAULT_KEYWORD }

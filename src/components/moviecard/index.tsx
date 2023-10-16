@@ -1,7 +1,8 @@
 import Card from '@mui/material/Card';
 import { MovieResponse } from '../../constant';
-import { Chip } from '@mui/material';
+import { Chip, SxProps } from '@mui/material';
 import { useState } from 'react';
+import { Block, FlexCenter, Img } from '..';
 
 type MovieCardType = {
      data: MovieResponse,
@@ -10,41 +11,46 @@ type MovieCardType = {
      onFetchDataDetail: Function
 }
 
+const chipStyle: SxProps = { position: 'absolute', bottom: '0', right: '0', margin: 1, backgroundColor: 'black' }
+
 export default function MovieCard({ data, onClick = () => { }, boolValue, onFetchDataDetail }: MovieCardType) {
      const [elementTop, setelementTop] = useState('')
      const [elementBottom, setelementBottom] = useState('')
      return (
-          <div className='pointer' onClick={() => {
+          <Block className='pointer' onClick={() => {
                onClick(!boolValue)
                onFetchDataDetail(data.Title)
           }}>
                <Card sx={{ width: 222, height: 300, position: 'relative' }}>
-                    <div onMouseLeave={() => {
+                    <Block onMouseLeave={() => {
                          setelementTop('')
                          setelementBottom('')
                     }}
                          onMouseOver={() => {
                               setelementTop(data.Title)
-                              setelementBottom(data.Type)
+                              setelementBottom(data.Year)
                          }}
                          className='img-hover-zoom'>
+                         <Block hidden={elementTop != '' ? false : true} className='movie-card-top'>
+                              {elementTop}
+                         </Block>
                          {
-                              elementTop != '' &&
-                              <div className='movie-card-top'>
-                                   {elementTop}
-                              </div>
+                              data.Poster != 'N/A' ?
+                                   <Img
+                                        src={data.Poster}
+                                        id={`Image : ${data.Title}`}
+                                        style={{ width: '100%', objectFit: 'cover' }}
+                                        alt={`Image ${data.Title}`}
+                                   />
+                                   :
+                                   <FlexCenter className='img-not-found' sx={{ color: 'white' }}>Image not found</FlexCenter>
                          }
-                         <img
-                              src={data.Poster}
-                              id={`Image : ${data.Title}`}
-                              style={{ width: '100%', objectFit: 'cover' }}
-                         />
                          {
                               elementBottom != '' &&
-                              <Chip size='small' style={{ position: 'absolute', bottom: '0', right: '0', margin: 5 }} label={elementBottom} color="primary"></Chip>
+                              <Chip size='small' sx={chipStyle} label={elementBottom} color="primary"></Chip>
                          }
-                    </div>
+                    </Block>
                </Card>
-          </div>
+          </Block>
      );
 }
