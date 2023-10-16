@@ -11,3 +11,33 @@
      -moz-osx-font-smoothing: grayscale
      -webkit-text-size-adjust: 100%
      text-transform: none !important
+
+.text-overflow-three
+     overflow: hidden
+     display: -webkit-box
+     -webkit-line-clamp: 3
+     -webkit-box-orient: vertical
+
+.text-overflow-two
+     overflow: hidden
+     display: -webkit-box
+     -webkit-line-clamp: 2
+     -webkit-box-orient: vertical
+
+.text-overflow-one
+     overflow: hidden
+     display: -webkit-box
+     -webkit-line-clamp: 1
+     -webkit-box-orient: vertical
+
+.img-hover-zoom
+     height: 400px
+     background-color: red
+     overflow: hidden
+     img
+          transition: transform .5s ease
+          &:hover
+               transform: scale(1.5)
+
+.pointer
+     cursor: pointer
