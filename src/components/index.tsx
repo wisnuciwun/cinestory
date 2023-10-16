@@ -1,5 +1,5 @@
-import Dropdown from "./dropdown";
 import MovieCard from "./moviecard";
 import MovieDetail from "./moviedetail";
+import Loading from "./loading";
 
-export { Dropdown, MovieCard, MovieDetail }
+export { MovieCard, MovieDetail, Loading }

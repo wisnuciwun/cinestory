@@ -19,7 +19,7 @@ export type MovieDetailResponse = {
      Poster: string
      Production: string
      Rated: string
-     Ratings: DetailRatings[]
+     // Ratings: DetailRatings[]
      Released: string
      Response: string
      Runtime: string
@@ -33,7 +33,7 @@ export type MovieDetailResponse = {
      imdbVotes: string
 }
 
-export interface MovieResponse {
+export type MovieResponse = {
      Poster: string;
      Title: string;
      Type: string;
@@ -44,7 +44,7 @@ export interface MovieResponse {
 export type MoviesResponse = {
      Response: string;
      Search: MovieResponse[];
-     totalResult: string;
+     totalResults: string;
 
 }
 

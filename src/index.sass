@@ -32,8 +32,16 @@
 
 .img-hover-zoom
      height: 400px
-     background-color: red
      overflow: hidden
+     // .movie-card-hover
+     //      height: 300px
+     //      position: absolute
+     //      width: 100%
+     //      z-index: 10 !important
+     //      transition: 0.5s ease
+     // &:hover
+     //      background-color: red
+     //      opacity: 0.1
      img
           transition: transform .5s ease
           &:hover
@@ -41,3 +49,26 @@
 
 .pointer
      cursor: pointer
+
+.movie-card-top
+     // &:hover
+     top: 0
+     position: absolute
+     padding: 4px
+     width: 100%
+     z-index: 10 !important
+     transition: 0.3s
+     height: 80px
+     font-size: 12px
+     background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
+     color: white
+
+.movie-card-bottom
+     // height: 300px
+     // padding: 5px
+     bottom: 0
+     position: absolute
+     width: 100%
+     z-index: 10 !important
+     transition: 0.3s
+     background-color: white

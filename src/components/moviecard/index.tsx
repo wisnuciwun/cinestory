@@ -1,13 +1,9 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { MovieResponse } from '../../constant';
-import { Grid } from '@mui/material';
+import { Chip } from '@mui/material';
+import { useState } from 'react';
 
-interface MovieCardType {
+type MovieCardType = {
      data: MovieResponse,
      boolValue?: boolean,
      onClick?: React.Dispatch<React.SetStateAction<boolean>>
@@ -15,38 +11,39 @@ interface MovieCardType {
 }
 
 export default function MovieCard({ data, onClick = () => { }, boolValue, onFetchDataDetail }: MovieCardType) {
+     const [elementTop, setelementTop] = useState('')
+     const [elementBottom, setelementBottom] = useState('')
      return (
           <div className='pointer' onClick={() => {
                onClick(!boolValue)
-               onFetchDataDetail()
+               onFetchDataDetail(data.Title)
           }}>
-               <Card sx={{ width: 377 }}>
-                    <div className='img-hover-zoom'>
+               <Card sx={{ width: 222, height: 300, position: 'relative' }}>
+                    <div onMouseLeave={() => {
+                         setelementTop('')
+                         setelementBottom('')
+                    }}
+                         onMouseOver={() => {
+                              setelementTop(data.Title)
+                              setelementBottom(data.Type)
+                         }}
+                         className='img-hover-zoom'>
+                         {
+                              elementTop != '' &&
+                              <div className='movie-card-top'>
+                                   {elementTop}
+                              </div>
+                         }
                          <img
                               src={data.Poster}
                               id={`Image : ${data.Title}`}
                               style={{ width: '100%', objectFit: 'cover' }}
                          />
+                         {
+                              elementBottom != '' &&
+                              <Chip size='small' style={{ position: 'absolute', bottom: '0', right: '0', margin: 5 }} label={elementBottom} color="primary"></Chip>
+                         }
                     </div>
-                    <CardContent>
-                         <Typography className='text-overflow-two' gutterBottom variant="h5" component="div">
-                              {data.Title}
-                         </Typography>
-                         <Typography variant="body2" color="text.secondary">
-                              <Grid container spacing={0}>
-                                   <Grid xs={2}>Tipe</Grid>
-                                   <Grid xs={8}>: {data.Type}</Grid>
-                              </Grid>
-                              <Grid container spacing={0}>
-                                   <Grid xs={2}>Tahun</Grid>
-                                   <Grid xs={8}>:  {data.Year}</Grid>
-                              </Grid>
-                              <Grid container spacing={0}>
-                                   <Grid xs={2}>IMDB ID</Grid>
-                                   <Grid xs={8}>:   {data.imdbID}</Grid>
-                              </Grid>
-                         </Typography>
-                    </CardContent>
                </Card>
           </div>
      );
