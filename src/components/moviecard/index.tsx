@@ -31,9 +31,14 @@ export default function MovieCard({ data, onClick = () => { }, boolValue, onFetc
                               setelementBottom(data.Year)
                          }}
                          className='img-hover-zoom'>
-                         <Block hidden={elementTop != '' ? false : true} className='movie-card-top'>
-                              {elementTop}
-                         </Block>
+                         {
+                              elementTop != '' ?
+                                   <Block className='movie-card-top'>
+                                        {elementTop}
+                                   </Block>
+                                   :
+                                   null
+                         }
                          {
                               data.Poster != 'N/A' ?
                                    <Img

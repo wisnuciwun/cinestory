@@ -13,6 +13,7 @@ function App() {
   const [keyword, setkeyword] = useState<string>('')
   const [page, setpage] = useState<number>(1)
   const [notFound, setnotFound] = useState(false)
+  const [errorMessage, seterrorMessage] = useState<string>('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -49,6 +50,7 @@ function App() {
         }
       } else {
         setnotFound(true)
+        seterrorMessage(res.data.Error)
       }
     })
   }
@@ -59,11 +61,8 @@ function App() {
     request.get(`${API_GET_MOVIES}&s=${search}&page=${page.toString()}`).then((res: any) => {
       if (res.data.Response != 'False') {
         setmovieList(res.data)
-      } else if (res.data.Error == 'Movie not found!') {
-        navigate('/')
-        setTimeout(() => {
-          window.location.reload()
-        }, 1000);
+      } else {
+        window.location.replace('/')
       }
     })
   }
@@ -105,7 +104,7 @@ function App() {
             </Form>
             {
               notFound &&
-              <Typography sx={{ position: 'absolute', fontSize: '12px', color: 'red' }} variant='body2'>Movie not found</Typography>
+              <Typography sx={{ position: 'absolute', fontSize: '12px', color: 'red' }} variant='body2'>{errorMessage}</Typography>
             }
           </Box>
         </Box>
@@ -128,9 +127,12 @@ function App() {
             )
         }
       </Container>
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, mb: 3 }}>
-        <Pagination page={page} onChange={(e, page) => onFetchMoviesPage(page)} count={movieList?.totalResults != undefined ? Math.ceil(parseInt(movieList?.totalResults) / 10) : 0} showFirstButton showLastButton />
-      </Box>
+      {
+        movieList != undefined &&
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, mb: 3 }}>
+          <Pagination page={page} onChange={(e, page) => onFetchMoviesPage(page)} count={movieList?.totalResults != undefined ? Math.ceil(parseInt(movieList?.totalResults) / 10) : 0} showFirstButton showLastButton />
+        </Box>
+      }
     </>
   )
 }

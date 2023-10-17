@@ -5,7 +5,9 @@ import './index.sass'
 import { Button, ThemeProvider, Typography, createTheme } from '@mui/material';
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import routes from "./routes";
-
+import { Block, TextSpan } from './components/index.tsx';
+import { onLCP } from 'web-vitals';
+// import reportWebVitals from './reportWebVitals';
 const custom = createTheme({
   typography: {
     button: {
@@ -14,6 +16,7 @@ const custom = createTheme({
   }
 });
 
+onLCP(console.log);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -33,22 +36,21 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<Home />} />
           <Route path="*" element={
             <Typography sx={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
-              <div className="text-center">
-                <h1 style={{ display: 'flex', alignItems: 'end', gap: '10px' }} className="w-100 text-center">
-                  <span style={{ fontSize: '80px' }} className="material-symbols-outlined">
+              <Block className="text-center">
+                <Typography variant='h3' sx={{ display: 'flex', alignItems: 'end', gap: '10px' }} className="w-100 text-center">
+                  <TextSpan style={{ fontSize: '80px' }} className="material-symbols-outlined">
                     signal_wifi_statusbar_not_connected
-                  </span>
-                  <span>Are you lost ?</span>
-                </h1>
-                <div className='pointer' onClick={() => window.location.replace('/')}>
+                  </TextSpan>
+                  <TextSpan>Are you lost ?</TextSpan>
+                </Typography>
+                <Block className='pointer' sx={{ mt: 1 }} onClick={() => window.location.replace('/')}>
                   <Typography sx={{ textAlign: 'center', textDecoration: 'none', color: 'black' }}>Back to Home</Typography>
-                </div>
-              </div>
+                </Block>
+              </Block>
             </Typography>
           } />
         </Routes>
       </Router>
-      {/* <Home /> */}
     </ThemeProvider>
   </React.StrictMode>,
 )
