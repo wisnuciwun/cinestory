@@ -4,7 +4,6 @@ import Home from './pages/Home.tsx'
 import './index.sass'
 import { ThemeProvider, Typography, createTheme } from '@mui/material';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import routes from "./routes";
 import { Block, TextSpan } from './components/index.tsx';
 import { onLCP } from 'web-vitals';
 
@@ -23,17 +22,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeProvider theme={custom}>
       <Router>
         <Routes>
-          {
-            routes.length != 0 ?
-              routes.map((route, id) => {
-                return (
-                  <Route key={id} path={route.path} element={<route.element />} />
-                )
-              })
-              :
-              <Route path="/" element={<Home />} />
-          }
           <Route path="/" element={<Home />} />
+          <Route path="/result" element={<Home />} />
           <Route path="*" element={
             <Typography sx={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
               <Block className="text-center">
