@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const request = axios.create({
-    baseURL: import.meta.env.VITE_API_HOST,
+    // baseURL: import.meta.env.VITE_API_HOST,
     timeout: 60000,
     headers: {
         Host: 'www.omdbapi.com',

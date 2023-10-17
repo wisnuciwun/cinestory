@@ -1,4 +1,4 @@
-const API_GET_MOVIES: string = `https://www.omdbapi.com/?apikey=${import.meta.env.VITE_API_KEY}`
+const API_GET_MOVIES: string = `https://www.omdbapi.com/?apikey=9708f5ab`
 const DEFAULT_KEYWORD: string = 'batman'
 
 export type DetailRatings = {
