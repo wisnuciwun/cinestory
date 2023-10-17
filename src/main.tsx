@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Home from './pages/Home.tsx'
 import './index.sass'
-import { Button, ThemeProvider, Typography, createTheme } from '@mui/material';
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { ThemeProvider, Typography, createTheme } from '@mui/material';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import routes from "./routes";
 import { Block, TextSpan } from './components/index.tsx';
 import { onLCP } from 'web-vitals';
-// import reportWebVitals from './reportWebVitals';
+
 const custom = createTheme({
   typography: {
     button: {

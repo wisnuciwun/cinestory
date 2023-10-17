@@ -130,7 +130,10 @@ function App() {
       {
         movieList != undefined &&
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, mb: 3 }}>
-          <Pagination page={page} onChange={(e, page) => onFetchMoviesPage(page)} count={movieList?.totalResults != undefined ? Math.ceil(parseInt(movieList?.totalResults) / 10) : 0} showFirstButton showLastButton />
+          <Pagination page={page} onChange={(e, page) => {
+            e.preventDefault
+            onFetchMoviesPage(page)
+          }} count={movieList?.totalResults != undefined ? Math.ceil(parseInt(movieList?.totalResults) / 10) : 0} showFirstButton showLastButton />
         </Box>
       }
     </>
